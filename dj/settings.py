@@ -24,7 +24,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-d)o6u7imyqyiza#3=282n&$3xois$b21w*5qk$y5!1tt53%9$$'
 =======
 SECRET_KEY = 'django-insecure-x+ocu)+@!)-n=)g6na##-ohi+ed#7nhkem!hd+kajz_o5@8_2_'
->>>>>>> 8299e1ca48613f2ad0fd50fed79be7f2730f206e
+#>>>>>>> 8299e1ca48613f2ad0fd50fed79be7f2730f206e
+
+# settings.py
+
+import os, json
+from django.core.exceptions import ImproperlyConfigured
+
+
+secret_file = os.path.join(BASE_DIR, 'secrets.json') # secrets.json 파일 위치를 명시
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

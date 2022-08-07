@@ -134,3 +134,7 @@ dmypy.json
 migrations/
 
 _media/
+
+# .gitignore 파일
+
+secrets.json
