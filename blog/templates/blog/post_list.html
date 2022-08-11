@@ -1,6 +1,11 @@
 {% extends 'blog/base.html' %}
 {% block main_area %} 
 
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <a class='btn btn-info btn-sm float-right' href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>&nbsp;&nbsp;New Post</a>
+        {% endif %}
+    {% endif %}
 
     <!-- Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="logInModalLabel"
@@ -57,14 +62,13 @@
                         {% endif %}
                         <h2 class="card-title">{{ p.title}}</h2> 
                         {% if p.hook_text %} 
-                        <h5 class="text-muted">{{p.hook_text }}</h5> 
+                        <h5 class="text-muted">{{ p.hook_text }}</h5> 
                         {% endif %}
                         <!-- 템플릿 필터 : 파이프(|) 문자 사용 -->
-                        <p class="card-text">{{ p.content | truncatewords:45 }}</p>
-
+                        <p class="card-text">{{ p.get_content_markdown | truncatewords_html:45 | safe }}</p>
                         {% if p.tags.exists %}
                             <i class='fas fa-tags'></i>
-                            {% for tag in p.tags.iterator %}
+                            {% for tag in p.tags.all %}
                                 <a href="{{ tag.get_absolute_url }}"><span class="badge badge-pill badge-light">{{ tag }}</span></a>
                             {% endfor %}
                             <br/>
@@ -108,7 +112,7 @@
                                 <ul>
                                     {% for category in categories %}
                                     <li>
-                                        <a href="{{ category.get_absolute_url }}">{{ category }} ({{ category.post_set.count }})</a>
+                                        <a href="{{ category.get_absolute_url }}">  {{ category }} ({{ category.post_set.count }})</a>
                                     </li>
                                     {% endfor %}
                                     <li>
