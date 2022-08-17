@@ -22,8 +22,9 @@
 </head>
 <body>
     {% include 'blog/navbar.html' %}
-    {% block main_area %} {% endblock %}
-    {% include 'blog/footer.html' %}
+    {% block main_area %}
+    {% endblock %}
+
 
     <script>
         function searchPost(){
@@ -44,6 +45,8 @@
     });
     </script>
 
+    
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    {% include 'blog/footer.html' %}
 </body>
 </html>

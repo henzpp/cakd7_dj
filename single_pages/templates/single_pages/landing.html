@@ -81,6 +81,24 @@
                     </form>
 
                 </div>
+                <!-- 최근 포스트 -->
+                <div class="col-lg-11 mt-5">
+                    <h5 class="text-light">Recent Posts</h5>
+                    {% for post in recent_posts %}
+                        <div class="card mt-1">
+                            <div class="card-body">
+                                <h6><a href="{{ post.get_absolute_url }}" class="text-decoration-none text-dark">
+                                    {{ post.title }}</a></h6>
+                                <span class="badge badge-pill badge-dark float-right">
+                                    {{ post.author.username }}
+                                    &nbsp;
+                                    &nbsp;
+                                    {{ post.created_at }}
+                                </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <!-- Social Icons-->
