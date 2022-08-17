@@ -70,11 +70,12 @@
                                 {% if user.is_authenticated %}
                                 <div id="comment-area">
                                     <!-- Comment form-->
-                                    <form id="comment-form" method="POST" action="{{ post.get_absolute_url }} new_comment/">
+                                    <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
                                         {% csrf_token %}
                                         <div class="mb-4">
-                                            {% comment %} {{ comment_form | crispy }} {% endcomment %}
-                                            <textarea class="form-control" rows="3" placeholder="Leave a Comment!"></textarea>
+                                            {{ comment_form | crispy }}
+                                            
+                                            {% comment %} <textarea class="form-control" rows="3" placeholder="Leave a Comment!"></textarea> {% endcomment %}
                                         </div>
                                         <button type="submit" class="btn btn-info"> Submit! </button>
                                     </form>
