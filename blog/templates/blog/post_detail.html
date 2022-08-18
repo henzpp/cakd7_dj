@@ -27,9 +27,11 @@
                             <h1 class="fw-bolder mb-1">{{post.title}}</h1>
                             <!-- Author -->
                             <p class="lead"> by <a href="#"> {{ post.author | upper }}</a></p>
-                            <hr>
                             {% if user.is_authenticated and user == post.author %}
                                 <a class="btn btn-info btn-sm float-right" href="/blog/update_post/{{ post.pk }}/" role="button"><i class="fas fa-pen"></i> Edit Post </a>
+                            {% endif %}
+                            {% if search_info %}
+                                <small class="text-muted">{{ search_info }}</small>
                             {% endif %}
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">{{post.created_at}}</div>
@@ -70,11 +72,12 @@
                                 {% if user.is_authenticated %}
                                 <div id="comment-area">
                                     <!-- Comment form-->
-                                    <form id="comment-form" method="POST" action="{{ post.get_absolute_url }} new_comment/">
+                                    <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
                                         {% csrf_token %}
                                         <div class="mb-4">
-                                            {% comment %} {{ comment_form | crispy }} {% endcomment %}
-                                            <textarea class="form-control" rows="3" placeholder="Leave a Comment!"></textarea>
+                                            {{ comment_form | crispy }}
+                                            
+                                            {% comment %} <textarea class="form-control" rows="3" placeholder="Leave a Comment!"></textarea> {% endcomment %}
                                         </div>
                                         <button type="submit" class="btn btn-info"> Submit! </button>
                                     </form>
@@ -169,8 +172,8 @@
                         <div class="card-header">Search</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-info" id="button-search" type="button">Go!</button>
+                                <input class="form-control" type="text" placeholder="Enter search term..." id="search-input" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-info" id="button-search" type="button" onclick="searchPost();">Go!</button>
                             </div>
                         </div>
                     </div>

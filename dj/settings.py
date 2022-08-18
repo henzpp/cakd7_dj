@@ -75,6 +75,7 @@ INSTALLED_APPS = [
 
     'blog',
     'single_pages',
+    'program',
 ]
 
 AUTHENTICATION_BACKENDS = (
