@@ -8,24 +8,24 @@
 
 <br><br><br><br>
 
-<form action="/program/result/" method="GET">
+{% comment %} <form action="/program/result/" method="GET">
     <h3> &nbsp; 숫자 두개를 입력해 주세용 </h3>
     <br><br>
     &nbsp; &nbsp; <input type="text" name="A">
     <input type="text" name="B">
     <input type="submit" value="입력">
-</form>
+</form> {% endcomment %}
 
 
-{% comment %} <form action="./result.html" method="GET">
+<form action="/program/result/" method="GET">
     <div class="input-group col-md-6">
-        <input type="text" aria-label="A" class="form-control">
-        <input type="text" aria-label="B" class="form-control">
+        <input type="text" aria-label="A" name="A" class="form-control">
+        <input type="text" aria-label="B" name="B" class="form-control">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">입력!!</button>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">입력!!</button>
         </div>
     </div>
-</form> {% endcomment %}
+</form>
 
 <br><br><br><br>
 <br><br><br><br>
