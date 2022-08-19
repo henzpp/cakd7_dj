@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block head_title %}
+    {{ post.title }} - Input Data
+{% endblock %}
+{% block main_area %}
+
+
+<form action="/ml/ml_result/" method="GET">
+    <h3> &nbsp; 타이타닉 생존자 예측 </h3>
+
+    &nbsp; &nbsp; 
+    <p> fare_cat <input type="text" name="fare_cat"></p>
+    <p> age_cat <input type="text" name="age_cat"></p>
+    <p> family <input type="text" name="family"></p>
+    <p> sex_female <input type="text" name="sex_female"></p>
+    <p> sex_male <input type="text" name="sex_male"></p>
+    <p> embarked_C <input type="text" name="embarked_C"></p>
+    <p> embarked_Q <input type="text" name="embarked_Q"></p>
+    <p> embarked_S <input type="text" name="embarked_S"></p>
+    <input type="submit" value="입력">
+</form>
+
+
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br>
+
+{% endblock %}
